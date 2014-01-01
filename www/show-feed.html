@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/themes/ibil0.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" /> 
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
+  <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js">
+  </script>
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+
+   <script type="text/javascript">
+
+
+google.load("feeds", "1");
+    //google.load("feeds", "1");
+    //$('#articlesfee').listview();
+
+    function getfeeds() {
+      result = localStorage.getItem("titlearticle")
+      alert('localStorage.titlearticle = ' + result)
+
+    }
+
+/*$(document).bind("pageinit", function() {
+               $.mobile.loading('show', {
+                  text: 'Please wait while retrieving data...',
+                  textVisible: true
+               });
+               //alert('koukou')
+})
+*/
+
+
+
+$(document).on('pageshow', '#show-feed-page', function(event){
+  console.log(google)
+  alert('showpage')
+  //alert('koukou')
+  google.setOnLoadCallback(getfeeds);
+
+
+  // alert('This page was just enhanced by jQuery Mobile!');
+ // event.preventDefault()
+    var entriesToShow = 10;
+   // window['google'].load("feeds", "1");
+    /*google.load("feeds", "1");
+    google.setOnLoadCallback(getfeeds);
+*/
+    
+
+    //alert('KOKO')
+/*
+    var url = 'http://www.merveillescoraniques.net/index.php?format=feed&type=rss';
+         $.ajax({
+            url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(url),
+            dataType: 'json',
+            beforeSend: function () {
+               $.mobile.loading('show', {
+                  text: 'Please wait while retrieving data...',
+                  textVisible: true
+               });
+            },
+            success: function (data) {
+               var $list = $('#feed-entries');
+               if (data.responseData === null) {
+                  navigator.notification.alert('Unable to retrieve the Feed. Invalid URL', function () {
+                  }, 'Error');
+                  return;
+               }
+            }
+        })
+         */
+
+});
+
+
+
+</script>
+
+
+      <title>Show Feed</title>
+   </head>
+   <body>
+      <div id="show-feed-page" data-role="page" data-title="Show Feed">
+    <div data-role="header" data-position="fixed"> 
+
+        <h1>FilInfo: Maghreb Emergent</h1>
+                    <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
+        <a id="btnRefresh" href="#" data-icon="refresh">Refresh</a>
+                <div data-role="navbar">
+            <ul>
+                 <li><a href="#home" class="ui-btn-active"
+                           data-icon="home" data-theme="b">Accueil</a></li>
+                 <li><a href="#speakers"
+                           data-icon="star" data-theme="b">Article favoris</a></li>
+                 <li><a href="#contactus"
+                           data-icon="grid" data-theme="b">Contactez nous</a></li>
+              </ul>
+           </div>
+    </div><!-- /header --> 
+ 
+        
+
+<p></p>
+
+
+
+
+         <div data-role="content">
+            <div id="feed-entries" data-role="collapsible-set">
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
